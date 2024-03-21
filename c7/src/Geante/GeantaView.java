@@ -1,17 +1,16 @@
-package Televizoare;
+package Geante;
 
 import java.util.Scanner;
-import java.util.ArrayList;
 
-public class TelevizorView {
+public class GeantaView {
 
-    private TelevizorService televizorService;
+    private GeantaService geantaService;
     private Scanner scanner;
 
-    public TelevizorView(){
+    public GeantaView(){
 
         this.scanner = new Scanner(System.in);
-        this.televizorService = new TelevizorService();
+        this.geantaService = new GeantaService();
         this.play();
 
     }
@@ -19,19 +18,18 @@ public class TelevizorView {
     private void meniu(){
 
         //crude
-
-        System.out.println("Apasati tasta 1 pentru a afisa lista de televizoare");
-        System.out.println("Apasati tasta 2 pentru a adauga un televizor");
-        System.out.println("Apasati tasta 3 pentru a sterge un televizor");
-        System.out.println("Apasati tasta 4 pentru a edita un televizor");
+        System.out.println("Apasati tasta 1 pentru a afisa lista de genti");
+        System.out.println("Apasati tasta 2 pentru a adauga o geanta");
+        System.out.println("Apasati tasta 3 pentru a sterge o geanta");
+        System.out.println("Apasati tasta 4 pentru a edita o geanta");
 
         System.out.println("\n");
 
         // filtrare
-        System.out.println("Apasati tasta 5 pentru a afisa televizoarele cu dimensiune peste 60 cm");
-        System.out.println("Apasati tasta 6 pentru a afisa televizoarele cu dimensiune sub 60 cm");
-        System.out.println("Apasati tasta 7 pentru a afisa televizoarele cu pretul peste 1000 lei");
-        System.out.println("Apasati tasta 8 pentru a afisa televizoarele cu pretul sub 1000 lei");
+        System.out.println("Apasati tasta 5 pentru a afisa gentile cu dimensiune peste 25 cm");
+        System.out.println("Apasati tasta 6 pentru a afisa gentile cu dimensiune sub 25 cm");
+        System.out.println("Apasati tasta 7 pentru a afisa gentile cu pretul peste 500 lei");
+        System.out.println("Apasati tasta 8 pentru a afisa gentile cu pretul sub 500 lei");
 
         System.out.println( "\n");
 
@@ -41,9 +39,9 @@ public class TelevizorView {
         System.out.println("Apasati tasta 11 pentru a sorta lista crescator dupa pret");
 
         System.out.println("\n");
+
         //adaugare rating
         System.out.println("Apasati tasta 12 pentru a adauga un rating");
-
     }
 
     private void play() {
@@ -55,48 +53,49 @@ public class TelevizorView {
 
             switch (choice) {
                 case 1:
-                    televizorService.afisareTelevozare();
+                    geantaService.afisareGenti();
                     break;
                 case 2:
-                    adaugareTelevizor();
+                    adaugareGeanta();
                     break;
                 case 3:
-                    stergereTelevizor();
+                    stergereGeanta();
                     break;
                 case 4:
-                    editareTelevizor();
+                    editareGeanta();
                     break;
                 case 5:
-                    televizorService.afisareDimensiunePeste60();
+                    geantaService.afisareDimensiunePeste25();
                     break;
                 case 6:
-                    televizorService.afisareDimensiuneSub60();
+                    geantaService.afisareDimensiuneSub25();
                     break;
                 case 7:
-                    televizorService.afisarePretPeste1000();
+                    geantaService.afisarePretPeste500();
                     break;
                 case 8:
-                    televizorService.afisarePretSub1000();
+                    geantaService.afisarePretSub500();
                     break;
                 case 9:
-                    televizorService.sortareDimensiune();
+                    geantaService.sortareDimensiune();
                     break;
                 case 10:
-                    televizorService.sortareAnFabricatie();
+                    geantaService.sortareAnFabricatie();
                     break;
                 case 11:
-                    televizorService.sortarePret();
+                    geantaService.sortarePret();
                     break;
                 case 12:
-                    addTelevizorRating();
+                    addRating();
                     break;
                 default:
                     System.out.println("Tasta incorecta");
             }
         }
     }
-    private void adaugareTelevizor() {
-        System.out.println("Introduceti detaliile televizorului: ");
+
+    private void adaugareGeanta() {
+        System.out.println("Introduceti detaliile gentii: ");
         System.out.print("Marca: ");
         String marca = scanner.nextLine();
         System.out.print("Model: ");
@@ -108,51 +107,53 @@ public class TelevizorView {
         System.out.print("An de fabricatie: ");
         int anFabricatie = Integer.parseInt(scanner.nextLine());
 
-        Televizor nou= new Televizor(marca, model, pret, dimensiune, anFabricatie);
-        if (televizorService.adaugareTelevizor(nou)) {
-            System.out.println("Tastatura a fost adaugata cu succes.");
+        Geanta nou= new Geanta(marca, model, pret, dimensiune, anFabricatie);
+        if (geantaService.adaugareGeanta(nou)) {
+            System.out.println("Geanta a fost adaugata cu succes.");
         } else {
-            System.out.println("Tastatura exista deja in lista.");
+            System.out.println("Geanta exista deja in lista.");
         }
     }
-    private void stergereTelevizor() {
-        System.out.println("Introduceti marca si modelul televizorului de sters: ");
+
+    private void stergereGeanta() {
+        System.out.println("Introduceti marca si modelul gentii de sters: ");
         System.out.print("Marca: ");
         String marca = scanner.nextLine();
         System.out.print("Model: ");
         String model = scanner.nextLine();
 
-        if (televizorService.stergereTelevizor(marca, model)) {
-            System.out.println("Televizorul a fost stearsa cu succes.");
+        if (geantaService.stergereGeanta(marca, model)) {
+            System.out.println("Geanta a fost stearsa cu succes.");
         } else {
-            System.out.println("Televizorul nu a fost gasita in lista.");
+            System.out.println("Geanta nu a fost gasita in lista.");
         }
     }
-    private void editareTelevizor() {
-        System.out.println("Introduceti marca si modelul televizorului: ");
+
+    private void editareGeanta() {
+        System.out.println("Introduceti marca si modelul gentii: ");
         System.out.print("Marca: ");
         String marca = scanner.nextLine();
         System.out.print("Model: ");
         String model = scanner.nextLine();
 
-        if (televizorService.editareTelevizor(marca, model)) {
-            System.out.println("Datele televizorului au fost actualizate.");
+        if (geantaService.editareGeanta(marca, model)) {
+            System.out.println("Datele gentii au fost actualizate.");
         } else {
-            System.out.println("Televizorul nu a fost gasita in lista.");
+            System.out.println("Geanta nu a fost gasita in lista.");
         }
     }
-    private void addTelevizorRating() {
+
+    private void addRating() {
         System.out.println("Introduceti marca si modelul televizorlului pentru adaugarea unui rating: ");
         System.out.print("Marca: ");
         String marca = scanner.nextLine();
         System.out.print("Model: ");
         String model = scanner.nextLine();
 
-        if (televizorService.adaugareRating(marca, model)) {
+        if (geantaService.adaugareRating(marca, model)) {
             System.out.println("Rating-ul a fost adaugat cu succes.");
         } else {
-            System.out.println("Televizorul nu a fost gasita in lista.");
+            System.out.println("Geanta nu a fost gasita in lista.");
         }
     }
-
 }

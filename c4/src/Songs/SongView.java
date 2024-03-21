@@ -152,7 +152,7 @@ public class SongView {
     }
 
     private void addRating() {
-        System.out.println("Introduceti marca si modelul televizorlului pentru adaugarea unui rating: ");
+        System.out.println("Introduceti marca si modelul cantecului pentru adaugarea unui rating: ");
         System.out.print("Nume: ");
         String nume = scanner.nextLine();
         System.out.print("Cantaret: ");
