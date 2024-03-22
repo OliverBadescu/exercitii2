@@ -144,7 +144,7 @@ public class GeantaView {
     }
 
     private void addRating() {
-        System.out.println("Introduceti marca si modelul televizorlului pentru adaugarea unui rating: ");
+        System.out.println("Introduceti marca si modelul gentii pentru adaugarea unui rating: ");
         System.out.print("Marca: ");
         String marca = scanner.nextLine();
         System.out.print("Model: ");
